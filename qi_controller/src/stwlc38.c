@@ -12,7 +12,9 @@ typedef struct stwlc38_driver_struct {
 
 static void TurnOnTransmitter(QiController super)
 {
-
+    stwlc38_driver me = (stwlc38_driver)super;
+    // register operations by transport callbacks
+    me->transport->write_reg(0, 0, 0);
 }
 
 static void TurnOffTransmitter(QiController super)
@@ -21,6 +23,16 @@ static void TurnOffTransmitter(QiController super)
 }
 
 static void SetFodGain(QiController super, FodGainLevel level)
+{
+
+}
+
+static void SelectEvents(QiController super, QiEventType event)
+{
+
+}
+
+static QiEventType GetEvents(QiController super)
 {
 
 }
@@ -35,6 +47,8 @@ static QiController_InterfaceStruct interface = {
     TurnOffTransmitter,
     TurnOffTransmitter,
     SetFodGain,
+    SelectEvents,
+    GetEvents,
     Destroy,
 };
 

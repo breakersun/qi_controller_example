@@ -21,6 +21,18 @@ void QiController_SetFodGain(QiController me, FodGainLevel level)
         me->interface_table->SetFodGain(me, level);
 }
 
+void QiController_SelectEvents(QiController me, QiEventType event_mask)
+{
+   if (me)
+        me->interface_table->SelectEvents(me, event_mask);
+}
+
+QiEventType QiController_GetEvents(QiController me)
+{
+    if (me)
+        return (me->interface_table->GetEvents(me));
+}
+
 const char * QiController_GetType(QiController driver)
 {
     if (driver)
