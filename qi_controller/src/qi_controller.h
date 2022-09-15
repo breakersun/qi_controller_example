@@ -25,6 +25,8 @@ typedef struct QiController_InterfaceStruct {
     void (*SelectEvents)(QiController, QiEventType);
     QiEventType (*GetEvents)(QiController);
     void (*Destroy)(QiController);
+    int (*Init)(QiController);
+    void (*PeriodicService)(QiController);
 
 } QiController_InterfaceStruct;
 
@@ -34,12 +36,14 @@ typedef struct QiControllerStruct {
     int id;
 } QiControllerStruct;
 
-
+int QiController_Init(QiController);
+void QiController_Destroy(QiController);
 void QiController_TurnOnTransmitter(QiController);
 void QiController_TurnOffTransmitter(QiController);
 void QiController_SetFodGain(QiController, FodGainLevel);
 void QiController_SelectEvent(QiController, QiEventType);
 QiEventType QiController_GetEvents(QiController);
+void QiController_PeriodicServiceCall(QiController);
 const char* QiController_GetType(QiController);
 int QiController_GetId(QiController);
 

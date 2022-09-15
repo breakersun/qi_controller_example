@@ -33,6 +33,26 @@ QiEventType QiController_GetEvents(QiController me)
         return (me->interface_table->GetEvents(me));
 }
 
+void QiController_Destroy(QiController me)
+{
+    if (me)
+        return (me->interface_table->Destroy(me));
+}
+
+
+int QiController_Init(QiController me)
+{
+    if (me)
+        return (me->interface_table->Init(me));
+}
+
+
+void QiController_PeriodicServiceCall(QiController me)
+{
+    if (me)
+        return (me->interface_table->PeriodicService(me));
+}
+
 const char * QiController_GetType(QiController driver)
 {
     if (driver)

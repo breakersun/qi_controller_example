@@ -43,6 +43,27 @@ static void Destroy(QiController super)
     free(me);
 }
 
+static int Init(QiController super)
+{
+    int result = 0;
+    stwlc38_driver me = (stwlc38_driver)super;
+
+    uint8_t value = 0x08;
+    me->transport->write_reg(0x00, 1, &value);
+    me->transport->write_reg(0x01, 1, &value);
+
+    return result;
+}
+
+static void PeriodicService(QiController super)
+{
+    stwlc38_driver me = (stwlc38_driver)super;
+
+    //do stuff need application to call periodicly
+    //such as sending real tx power custmized msg to rx
+    //me->transport->write_reg()
+}
+
 static QiController_InterfaceStruct interface = {
     TurnOffTransmitter,
     TurnOffTransmitter,
@@ -50,6 +71,8 @@ static QiController_InterfaceStruct interface = {
     SelectEvents,
     GetEvents,
     Destroy,
+    Init,
+    PeriodicService,
 };
 
 QiController stwlc38_create(int id, transport_struct *transport)
