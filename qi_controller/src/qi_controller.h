@@ -19,9 +19,6 @@ typedef enum {
 typedef struct QiControllerStruct *QiController;
 
 typedef struct QiController_InterfaceStruct {
-    void (*TurnOnTransmitter)(QiController);
-    void (*TurnOffTransmitter)(QiController);
-    void (*SetFodGain)(QiController, FodGainLevel);
     void (*SelectEvents)(QiController, QiEventType);
     QiEventType (*GetEvents)(QiController);
     void (*Destroy)(QiController);
@@ -38,9 +35,6 @@ typedef struct QiControllerStruct {
 
 int QiController_Init(QiController);
 void QiController_Destroy(QiController);
-void QiController_TurnOnTransmitter(QiController);
-void QiController_TurnOffTransmitter(QiController);
-void QiController_SetFodGain(QiController, FodGainLevel);
 void QiController_SelectEvent(QiController, QiEventType);
 QiEventType QiController_GetEvents(QiController);
 void QiController_PeriodicServiceCall(QiController);
