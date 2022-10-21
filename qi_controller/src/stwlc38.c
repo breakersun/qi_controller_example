@@ -10,12 +10,17 @@ typedef struct stwlc38_driver_struct {
     transport_struct *transport;
 } stwlc38_driver_struct;
 
-static void SelectEvents(QiController super, QiEventType event)
+static void SelectEvents(QiController super, QiEventBitMapType events)
 {
 
 }
 
-static QiEventType GetEvents(QiController super)
+static QiEventBitMapType GetEvents(QiController super)
+{
+
+}
+
+static void ClearEvents(QiController super, QiEventBitMapType events)
 {
 
 }
@@ -50,10 +55,17 @@ static void PeriodicService(QiController super)
 static QiController_InterfaceStruct interface = {
     SelectEvents,
     GetEvents,
+    ClearEvents,
     Destroy,
     Init,
     PeriodicService,
 };
+
+// low level interfaces
+uint32_t Stwlc38_GetRawEvents(stwlc38_driver me)
+{
+
+}
 
 QiController stwlc38_create(int id, transport_struct *transport)
 {

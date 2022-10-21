@@ -4,13 +4,13 @@
 #include "qi_controller.h"
 
 
-void QiController_SelectEvents(QiController me, QiEventType event_mask)
+void QiController_SelectEvents(QiController me, QiEventBitMapType event_mask)
 {
    if (me)
         me->interface_table->SelectEvents(me, event_mask);
 }
 
-QiEventType QiController_GetEvents(QiController me)
+QiEventBitMapType QiController_GetEvents(QiController me)
 {
     if (me)
         return (me->interface_table->GetEvents(me));
